@@ -19,7 +19,7 @@ Deno.serve((req) => {
     }
 
     if (url.pathname === "/app2") {
-      new Response(null, {
+      return new Response(null, {
         headers: { Location: "/app2/" },
         status: 301,
       });
