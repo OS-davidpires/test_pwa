@@ -7,7 +7,7 @@
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/app2/app2.sw.js', { scope: '/app2' })
+            navigator.serviceWorker.register('/app2/app2.sw.js', { scope: '/app2/' })
                 .then(registration => {
                     console.log('ServiceWorker registered with scope:', registration.scope);
                 })
