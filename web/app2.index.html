@@ -31,7 +31,7 @@
                         messageChannel.port1.onmessage = (event) => {
                             console.log('Message from ServiceWorker:', event.data);
                             const elem = document.createElement('div');
-                            elem.textContent = event.data;
+                            elem.textContent = JSON.stringify(event.data);
                             document.body.appendChild(elem);
                         };
                         sw.postMessage({ type: 'GET_DATA' }, [messageChannel.port2]);
