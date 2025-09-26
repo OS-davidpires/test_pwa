@@ -10,12 +10,19 @@ Deno.serve((req) => {
         return serveFile(req, './web/app1.sw.js');
     }
 
-    if (url.pathname === '/app2') {
-        return serveFile(req, './web/app2.index.html');
+    if (url.pathname === "/app2/") {
+      return serveFile(req, "./web/app2.index.html");
     }
 
     if (url.pathname === '/app2/app2.sw.js') {
         return serveFile(req, './web/app2.sw.js');
+    }
+
+    if (url.pathname === "/app2") {
+      new Response(null, {
+        headers: { Location: "/app2/" },
+        status: 301,
+      });
     }
 
     return new Response("Unknown route", { status: 404 });
