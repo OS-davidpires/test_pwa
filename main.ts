@@ -25,6 +25,13 @@ Deno.serve((req) => {
         return serveFile(req, './web/app2.sw.js');
     }
 
+    if (url.pathname === "/api/data") {
+      return new Response("{ data: 'OK' }", {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
     if (url.pathname === "/app2") {
       return new Response(null, {
         headers: { Location: "/app2/" },

@@ -20,6 +20,7 @@
 </script>
 <body>
     <button id="my_btn">Read ServiceWorker</button>
+    <button id="my_btn_data">Read DATA</button>
     <script>
         document.getElementById('my_btn').addEventListener('click', async () => {
             if ('serviceWorker' in navigator) {
@@ -45,6 +46,23 @@
                 console.log('ServiceWorkers are not supported in this browser.');
             }
         });
+
+    document.getElementById('my_btn_data').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/app2/', { method: 'POST' });
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Data from /app2/:', data);
+                const elem = document.createElement('div');
+                elem.textContent = JSON.stringify(data);
+                document.body.appendChild(elem);
+            } else {
+                console.error('Network response was not ok:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    });
     </script>
 </body>
 </html>
