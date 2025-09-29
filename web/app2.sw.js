@@ -5,3 +5,22 @@ self.addEventListener('message', (event) => {
         event.ports[0].postMessage(response);
     }
 });
+
+self.addEventListener(
+  "fetch",
+  /** @type {(event: FetchEvent) => {}}*/ async (event) => {
+    console.log("app2 sw fetch", event.request.url);
+    const cache = await caches.open("app2");
+
+    const match = await cache.match(event.request);
+    if (match) {
+      return event.respondWith(match);
+    }
+
+    const response = await fetch(event.request);
+    if (response && response.status === 200) {
+      cache.put(event.request, response.clone());
+    }
+    return event.respondWith(response);
+  }
+);

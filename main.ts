@@ -11,7 +11,14 @@ Deno.serve((req) => {
     }
 
     if (url.pathname === "/app2/") {
-      return serveFile(req, "./web/app2.index.html");
+      if (req.method === "GET") {
+        return serveFile(req, "./web/app2.index.html");
+      } else {
+        return new Response("{ data: 'OK' }", {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
     }
 
     if (url.pathname === '/app2/app2.sw.js') {
