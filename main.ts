@@ -14,19 +14,19 @@ Deno.serve((req) => {
       if (req.method === "GET") {
         return serveFile(req, "./web/app2.index.html");
       } else {
-        return new Response("{ data: 'OK' }", {
+        return new Response(JSON.stringify({ data: "OK" }), {
           status: 200,
           headers: { "Content-Type": "application/json" },
         });
       }
     }
 
-    if (url.pathname === '/app2/app2.sw.js') {
-        return serveFile(req, './web/app2.sw.js');
+    if (url.pathname === "/app2/app2.sw.js") {
+      return serveFile(req, "./web/app2.sw.js");
     }
 
     if (url.pathname === "/api/data") {
-      return new Response("{ data: 'OK' }", {
+      return new Response(JSON.stringify({ data: "OK" }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
       });
