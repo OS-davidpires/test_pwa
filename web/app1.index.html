@@ -49,10 +49,10 @@
 
     document.getElementById('my_btn_data').addEventListener('click', async () => {
         try {
-            const response = await fetch('/api/data', { method: 'POST' });
+            const response = await fetch('/app2/', { method: 'POST' });
             if (response.ok) {
                 const data = await response.json();
-                console.log('Data from /api/data', data);
+                console.log('Data from /app2/:', data);
                 const elem = document.createElement('div');
                 elem.textContent = JSON.stringify(data);
                 document.body.appendChild(elem);

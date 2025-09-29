@@ -9,6 +9,10 @@ self.addEventListener('message', (event) => {
 self.addEventListener(
   "fetch",
   /** @type {(event: FetchEvent) => {}}*/ async (event) => {
+    if (event.request.method !== "GET") {
+      return;
+    }
+    
     console.log("app2 sw fetch", event.request.url);
     const cache = await caches.open("app2");
 
